@@ -11,7 +11,7 @@
 			justify-content: center;
 			align-items: center;
 			height: 100vh;
-			//background: url('./background.jpg') no-repeat center center fixed;
+			background: url('./background.jpg') no-repeat center center fixed;
 			background-size: cover;
 			margin: 0;
 		}
@@ -82,13 +82,9 @@
                     mensagem.textContent = "CEP não encontrado.";
                     mensagem.style.display = "block";
                 } else if (localidadesValidas.includes(data.localidade)) {
-                    //window.location.href = "https://www.google.com"; // Redireciona para a HomePage
-
-			mensagem.textContent = "Atendemos na sua região!";
-                    mensagem.style.display = "block";
-
+                    window.location.href = "https://pede-alface.kyte.site"; // Redireciona para a HomePage
                 } else {
-                    mensagem.textContent = "Não atendemos na sua região.";
+                    mensagem.textContent = "Poxa... Ainda não atendemos sua região. Fique ligado em nossas redes sociais.";
                     mensagem.style.display = "block";
                 }
             } catch (error) {
