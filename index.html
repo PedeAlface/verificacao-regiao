@@ -83,10 +83,12 @@
                     mensagem.style.display = "block";
                 } else if (localidadesValidas.includes(data.localidade)) {
                     //window.location.href = "https://www.google.com"; // Redireciona para a HomePage
-			mensagem.textContent = "Atendemos em sua região!";
-                    	mensagem.style.display = "block";
+
+			mensagem.textContent = "Atendemos na sua região!";
+                    mensagem.style.display = "block";
+
                 } else {
-                    mensagem.textContent = "Poxa... Ainda não atendemos em sua região. Fique ligado em nossas des sociais.";
+                    mensagem.textContent = "Não atendemos na sua região.";
                     mensagem.style.display = "block";
                 }
             } catch (error) {
