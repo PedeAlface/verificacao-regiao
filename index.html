@@ -82,7 +82,11 @@
                     mensagem.textContent = "CEP não encontrado.";
                     mensagem.style.display = "block";
                 } else if (localidadesValidas.includes(data.localidade)) {
-                    window.location.href = "https://pede-alface.kyte.site"; // Redireciona para a HomePage
+                    //window.location.href = "https://www.pedealface.com"; // Redireciona para a HomePage
+
+			mensagem.textContent = "Atendemos a sua região!";
+                    mensagem.style.display = "block";
+
                 } else {
                     mensagem.textContent = "Poxa... Ainda não atendemos sua região. Fique ligado em nossas redes sociais.";
                     mensagem.style.display = "block";
