@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificação de Região</title>
     <style>
-		body {
-			font-family: Arial, sans-serif;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
-			//background: url('./background.jpg') no-repeat center center fixed;
-			background-size: cover;
-			margin: 0;
-		}
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            //background: url('./background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+        }
         .container {
             text-align: center;
             background: rgba(0, 51, 0, 0.8);
@@ -45,11 +45,17 @@
         }
         .message {
             margin-top: 20px;
-            color: #f8d7da;
-            background-color: #721c24;
             padding: 10px;
             border-radius: 5px;
             display: none;
+        }
+        .message.error {
+            color: #f8d7da;
+            background-color: #721c24;
+        }
+        .message.success {
+            color: #155724;
+            background-color: #d4edda;
         }
     </style>
 </head>
@@ -59,18 +65,21 @@
         <p>Por favor, insira o seu CEP:</p>
         <input type="text" id="cep" placeholder="CEP">
         <button onclick="verificarCEP()">Verificar</button>
-        <p class="message" id="message">Não atendemos na sua região.</p>
+        <p class="message error" id="message">Não atendemos na sua região.</p>
+        <p class="message success" id="successMessage">Atendemos a sua região!</p>
     </div>
 
     <script>
         async function verificarCEP() {
             var cep = document.getElementById("cep").value.replace("-", "");
-            var mensagem = document.getElementById("message");
+            var mensagemErro = document.getElementById("message");
+            var mensagemSucesso = document.getElementById("successMessage");
             var localidadesValidas = ["Mogi das Cruzes", "Suzano", "São Paulo"]; // Adicione mais localidades conforme necessário
 
             if (!cep.match(/^\d{8}$/)) {
-                mensagem.textContent = "Por favor, insira um CEP válido.";
-                mensagem.style.display = "block";
+                mensagemErro.textContent = "Por favor, insira um CEP válido.";
+                mensagemErro.style.display = "block";
+                mensagemSucesso.style.display = "none";
                 return;
             }
 
@@ -79,21 +88,21 @@
                 var data = await response.json();
 
                 if (data.erro) {
-                    mensagem.textContent = "CEP não encontrado.";
-                    mensagem.style.display = "block";
+                    mensagemErro.textContent = "CEP não encontrado.";
+                    mensagemErro.style.display = "block";
+                    mensagemSucesso.style.display = "none";
                 } else if (localidadesValidas.includes(data.localidade)) {
-                    //window.location.href = "https://www.pedealface.com"; // Redireciona para a HomePage
-
-			mensagem.textContent = "Atendemos a sua região!";
-                    mensagem.style.display = "block";
-
+                    mensagemSucesso.style.display = "block";
+                    mensagemErro.style.display = "none";
                 } else {
-                    mensagem.textContent = "Poxa... Ainda não atendemos sua região. Fique ligado em nossas redes sociais.";
-                    mensagem.style.display = "block";
+                    mensagemErro.textContent = "Poxa... Ainda não atendemos sua região. Fique ligado em nossas redes sociais.";
+                    mensagemErro.style.display = "block";
+                    mensagemSucesso.style.display = "none";
                 }
             } catch (error) {
-                mensagem.textContent = "Erro ao verificar o CEP. Tente novamente mais tarde.";
-                mensagem.style.display = "block";
+                mensagemErro.textContent = "Erro ao verificar o CEP. Tente novamente mais tarde.";
+                mensagemErro.style.display = "block";
+                mensagemSucesso.style.display = "none";
             }
         }
     </script>
