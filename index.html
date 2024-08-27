@@ -74,7 +74,7 @@
             var cep = document.getElementById("cep").value.replace("-", "");
             var mensagemErro = document.getElementById("message");
             var mensagemSucesso = document.getElementById("successMessage");
-            var localidadesValidas = ["Mogi das Cruzes", "Suzano", "São Paulo"]; // Adicione mais localidades conforme necessário
+            var localidadesValidas = ["Mogi das Cruzes", "São Caetano do Sul", "Arujá", "Ferraz de Vasconcelos", "Poá", "Santo André", "Ribeirão Pires", "Mauá", "São Bernardo do Campo", "Suzano", "São Paulo"]; // Adicione mais localidades conforme necessário
 
             if (!cep.match(/^\d{8}$/)) {
                 mensagemErro.textContent = "Por favor, insira um CEP válido.";
